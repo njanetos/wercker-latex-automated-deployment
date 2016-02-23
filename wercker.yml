@@ -1,0 +1,25 @@
+box: njanetos/texlive
+
+build:
+    steps:
+        - script:
+            name: render document
+            code: |
+                ./.build.sh
+deploy:
+    steps:
+        - script:
+            name: deploy gh-pages
+            code: |
+                remote="https://$GITHUB_TOKEN@github.com/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY.git"
+                git clone $remote
+                cd $WERCKER_GIT_REPOSITORY
+                ./.build.sh
+                git config user.email "automatedbuild@wercker.com"
+                git config user.name "wercker"
+                git add -A
+                git stash
+                git checkout gh-pages
+                git checkout stash -- .
+                git commit -m "Update from Wercker"
+                git push origin gh-pages
