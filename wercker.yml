@@ -17,8 +17,8 @@ deploy:
                 ./.build.sh
                 git config user.email "automatedbuild@wercker.com"
                 git config user.name "wercker"
+                git stash
                 git checkout gh-pages
-                git rm -rf .
-                git add . -A
+                git apply
                 git commit -m "Update from Wercker"
                 git push origin gh-pages
