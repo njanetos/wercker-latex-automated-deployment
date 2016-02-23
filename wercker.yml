@@ -1,7 +1,4 @@
 box: njanetos/texlive
-    tag: latest
-    no-response-timeout: 60
-    command-timeout: 60
 
 build:
     steps:
