@@ -20,6 +20,6 @@ deploy:
                 git add -A
                 git stash
                 git checkout gh-pages
-                git stash apply
+                git checkout stash -- .
                 git commit -m "Update from Wercker"
                 git push origin gh-pages
